@@ -85,8 +85,12 @@ class HashTable:
         Fill this in.
         '''
         index = self._hash_mod(key)
+        pair = self.storage[index]
         
-        return self.storage[index].value
+        if pair is None:
+            return None
+        else:
+            return self.storage[index].value
 
 
     def resize(self):
@@ -96,11 +100,16 @@ class HashTable:
 
         Fill this in.
         '''
-        # self.capacity *= 2
-        #
-        # new_storage = [None] * self.capacity
-        #
-        #
+        self.capacity *= 2
+
+        new_storage = [None] * self.capacity
+
+        for pair in self.storage:
+            if pair is not None:
+                new_index = self._hash_mod(pair.key)
+                new_storage[new_index] = pair
+                
+        self.storage = new_storage
 
 
 
