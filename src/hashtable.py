@@ -51,7 +51,13 @@ class HashTable:
 
         Fill this in.
         '''
-        pass
+        index = self._hash_mod(key)
+        print("index", index)
+        print("storage", self.storage)
+        if self.storage[index] is not None:
+            return
+        
+        self.storage[index] = LinkedPair(key, value)
 
 
 
